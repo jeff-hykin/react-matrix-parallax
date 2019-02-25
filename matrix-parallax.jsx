@@ -2,7 +2,7 @@ import React from 'react'
 import { withStyles } from '@material-ui/styles'
 import Matrix from './matrix'
 
-const classes = {
+export const classes = {
     fullWindow: {
         width: '100vw',
         height: '100vh',
@@ -25,7 +25,7 @@ const classes = {
     }
 }
 
-module.exports = withStyles(classes)(class extends React.Component {
+export default withStyles(classes)(class extends React.Component {
     static defaultProps = {
         parallaxRate: 2,
         backgroundColor: 'rgba(0 ,0 ,0 , 1)',
