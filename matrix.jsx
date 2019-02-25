@@ -80,7 +80,7 @@ class Matrix extends React.Component {
     }
 
     render() {
-        let style = this.props.style ? this.props.style : {}
+        let style = this.props.style || {}
         return React.createElement('div', {
             style: {
                 ...style,

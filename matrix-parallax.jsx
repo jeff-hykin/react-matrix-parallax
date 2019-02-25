@@ -20,7 +20,6 @@ const classes = {
         backgroundColor: 'transparent',
         zIndex: '2',
         transition: 'margin 500ms cubic-bezier(.19,1,.06,.99) 0s',
-        color: 'rgba(122, 229, 114, 0.87)',
         fontFamily: 'monospace'
     }
 }
@@ -59,6 +58,7 @@ class MatrixParallax extends React.Component {
             React.createElement(Matrix, {
                 style: {
                     ...classes.matrix,
+                    color: this.props.color,
                     top: -this.state.boxMarginTop / this.backgroundParallaxRate,
                     left: -this.state.boxMarginLeft / this.backgroundParallaxRate
                 },
@@ -71,6 +71,7 @@ class MatrixParallax extends React.Component {
             React.createElement('div',{
                 className: this.props.classes.moveableChildren,
                 style: {
+                    color: this.props.color,
                     marginLeft: this.state.boxMarginLeft / this.boxChildrenParallaxRate,
                     marginTop: this.state.boxMarginTop / this.boxChildrenParallaxRate,
                 },
@@ -80,6 +81,7 @@ class MatrixParallax extends React.Component {
             React.createElement(Matrix, {
                 style: {
                     ...classes.matrix,
+                    color: this.props.color,
                     top: -this.state.boxMarginTop / this.forgroundMatrixParalaxFactor,
                     left: -this.state.boxMarginLeft / this.forgroundMatrixParalaxFactor
                 },
@@ -96,6 +98,7 @@ class MatrixParallax extends React.Component {
 
 MatrixParallax.defaultProps = {
     parallaxRate: 2,
+    color: 'rgba(122, 229, 114, 0.87)',
     backgroundColor: 'rgba(0 ,0 ,0 , 1)',
     frontMatrixProps: {},
     backMatrixProps: {}
