@@ -1,6 +1,6 @@
 let React = require('react')
 let { withStyles } = require('@material-ui/styles')
-let Matrix = require('react-matrix-parallax/matrix')
+let Matrix = require('./matrix')
 
 const classes = {
     fullWindow: {
