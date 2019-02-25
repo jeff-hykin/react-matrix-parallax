@@ -2,7 +2,7 @@ let React = require('react')
 let { withStyles } = require('@material-ui/styles')
 let Matrix = require('./matrix')
 
-export const classes = {
+const classes = {
     fullWindow: {
         width: '100vw',
         height: '100vh',
@@ -25,13 +25,7 @@ export const classes = {
     }
 }
 
-let defaultProps = {
-    parallaxRate: 2,
-    backgroundColor: 'rgba(0 ,0 ,0 , 1)',
-    frontMatrixProps: {},
-    backMatrixProps: {}
-};
-module.exports = withStyles(classes)(class extends React.Component {
+class MatrixParallax extends React.Component {
 
     constructor(props) {
         super(props)
@@ -60,42 +54,52 @@ module.exports = withStyles(classes)(class extends React.Component {
     }
 
     render() {
-        return <div className={this.props.classes.fullWindow} >
-            {/* Background matrix */}
-            <Matrix
-                style={{
+        return React.createElement('div', {
+            className:this.props.classes.fullWindow,
+        },
+            React.createElement(Matrix, {
+                style: {
                     ...classes.matrix,
                     top: -this.state.boxMarginTop / this.backgroundParallaxRate,
                     left: -this.state.boxMarginLeft / this.backgroundParallaxRate
-                }}
-                backgroundColor={this.props.backgroundColor}
-                fontSize={11}
-                frequency={0.001}
-                fullscreen
-                {...this.props.backMatrixProps}
-            />
-            <div
-                className={this.props.classes.moveableChildren}
-                style={{
+                },
+                backgroundColor: this.props.backgroundColor,
+                fontSize: 11,
+                frequency: 0.001,
+                fullscreen: true,
+                ...this.props.backMatrixProps
+            }),
+            React.createElement('div',{
+                className: this.props.classes.moveableChildren,
+                style={
                     marginLeft: this.state.boxMarginLeft / this.boxChildrenParallaxRate,
-                    marginTop: this.state.boxMarginTop / this.boxChildrenParallaxRate
-                }} >
-                {this.props.children}
-            </div>
-            {/* Forground matrix */}
-            <Matrix
-                style={{
+                    marginTop: this.state.boxMarginTop / this.boxChildrenParallaxRate,
+                },
+            },
+                this.props.children
+            ),
+            React.createElement(Matrix, {
+                style: {
                     ...classes.matrix,
                     top: -this.state.boxMarginTop / this.forgroundMatrixParalaxFactor,
                     left: -this.state.boxMarginLeft / this.forgroundMatrixParalaxFactor
-                }}
-                backgroundColor='rgba(0,0,0,0)'
-                fontSize={11}
-                frequency={0.001}
-                fullscreen
-                zIndex={3}
-                {...this.props.frontMatrixProps}
-            />
-        </div>
+                }
+                backgroundColor: 'rgba(0,0,0,0)',
+                fontSize: 11,
+                frequency: 0.001,
+                fullscreen: true,
+                zIndex: 3,
+                ...this.props.frontMatrixProps
+            })
+        )
     }
-})
+}
+
+matrixParallax.defaultProps = {
+    parallaxRate: 2,
+    backgroundColor: 'rgba(0 ,0 ,0 , 1)',
+    frontMatrixProps: {},
+    backMatrixProps: {}
+}
+
+module.exports = withStyles(classes)(MatrixParallax)
