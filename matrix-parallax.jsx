@@ -1,6 +1,6 @@
 let React = require('react')
 let { withStyles } = require('@material-ui/styles')
-let Matrix = require('./matrix')
+let Matrix = require('react-matrix-parallax/matrix')
 
 const classes = {
     fullWindow: {
@@ -29,7 +29,6 @@ class MatrixParallax extends React.Component {
 
     constructor(props) {
         super(props)
-        this.props = {...defaultProps, ...this.props}
         this.state = {
             boxMarginTop: window.innerHeight / 2,
             boxMarginLeft: window.innerWidth / 2
@@ -95,7 +94,7 @@ class MatrixParallax extends React.Component {
     }
 }
 
-matrixParallax.defaultProps = {
+MatrixParallax.defaultProps = {
     parallaxRate: 2,
     backgroundColor: 'rgba(0 ,0 ,0 , 1)',
     frontMatrixProps: {},
