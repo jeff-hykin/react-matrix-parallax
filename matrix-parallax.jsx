@@ -61,10 +61,10 @@ class MatrixParallax extends React.Component {
             React.createElement(Matrix, {
                 style: {
                     ...classes.matrix,
-                    color: this.props.color,
                     left: -this.state.boxMarginLeft / this.backgroundParallaxRate,
                     top: -this.state.boxMarginTop / this.backgroundParallaxRate,
                 },
+                color: this.props.color,
                 backgroundColor: this.props.backgroundColor,
                 fontSize: 11,
                 frequency: 0.001,
@@ -92,10 +92,10 @@ class MatrixParallax extends React.Component {
             React.createElement(Matrix, {
                 style: {
                     ...classes.matrix,
-                    color: this.props.color,
                     left: -this.state.boxMarginLeft / this.forgroundMatrixParalaxFactor,
                     top: -this.state.boxMarginTop / this.forgroundMatrixParalaxFactor,
                 },
+                color: this.props.color,
                 backgroundColor: 'rgba(0,0,0,0)',
                 fontSize: 11,
                 frequency: 0.001,
