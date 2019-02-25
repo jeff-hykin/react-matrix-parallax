@@ -71,7 +71,7 @@ class MatrixParallax extends React.Component {
             }),
             React.createElement('div',{
                 className: this.props.classes.moveableChildren,
-                style={
+                style: {
                     marginLeft: this.state.boxMarginLeft / this.boxChildrenParallaxRate,
                     marginTop: this.state.boxMarginTop / this.boxChildrenParallaxRate,
                 },
@@ -83,7 +83,7 @@ class MatrixParallax extends React.Component {
                     ...classes.matrix,
                     top: -this.state.boxMarginTop / this.forgroundMatrixParalaxFactor,
                     left: -this.state.boxMarginLeft / this.forgroundMatrixParalaxFactor
-                }
+                },
                 backgroundColor: 'rgba(0,0,0,0)',
                 fontSize: 11,
                 frequency: 0.001,
