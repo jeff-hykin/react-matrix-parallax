@@ -111,7 +111,7 @@ MatrixParallax.defaultProps = {
     parallaxRate: 2,
     color: 'rgba(122, 229, 114, 0.87)',
     overlay: 'rgba(0,0,0,0.3)',
-    backgroundColor: 'rgba(0 ,0 ,0 , 1)',
+    backgroundColor: 'rgba(0,0,0,1)',
     zoomEffect: false,
     frontMatrixProps: {},
     backMatrixProps: {}
