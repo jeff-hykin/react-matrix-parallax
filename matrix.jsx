@@ -1,35 +1,34 @@
 let React = require('react')
 let PropTypes = require('prop-types')
 
+let largerThanAnyPageSize = 9999999
+
 class Matrix extends React.Component {
     constructor(props) {
         super(props)
 
-        this.state = {
-            canvas: null
-        }
-
+        this.state = {}
         this.draw = this.draw.bind(this)
         this.updateDimensions = this.updateDimensions.bind(this)
     }
 
     componentDidMount() {
-        this.setState({ canvas: this.refs.canvas }, () => {
+        this.setState({}, () => {
             let columns = []
-            let context = this.state.canvas.getContext('2d')
+            let context = this.refs.canvas.getContext('2d')
             let size = this.props.colSize
             let source = '0 0 1 1'
             let width = this.props.fullscreen ? window.innerWidth : this.props.width
             let height = this.props.fullscreen ? window.innerHeight : this.props.height
-            let canvas = this.state.canvas
+            let canvas = this.refs.canvas
             canvas.width = width
             canvas.height = height
 
             let numberOfColumns = Math.floor(width / size * 3)
             this.initialDraw = true
-            this.setState({ canvas, columns, context, size, source, numberOfColumns }, () => {
+            this.setState({ columns, context, size, source, numberOfColumns }, () => {
                 for (let i = 0; i < numberOfColumns; i++) {
-                    columns.push(1000)
+                    columns.push(largerThanAnyPageSize)
                 }
                 this.draw()
 
@@ -50,7 +49,7 @@ class Matrix extends React.Component {
         // switch to only affect the intersection of the existing canvas, and fade everything
         context.globalCompositeOperation = 'destination-out'
         context.fillStyle = `rgba(255, 255, 255, ${this.props.fadeRate})`
-        context.fillRect(0, 0, this.state.canvas.width, this.state.canvas.width)
+        context.fillRect(0, 0, this.refs.canvas.width, this.refs.canvas.width)
         // switch back to the normal mode of writing on top of the canvas
         context.globalCompositeOperation = 'source-over'
 
@@ -62,9 +61,17 @@ class Matrix extends React.Component {
             let character = this.state.source[index]
             let positionX = whichRow * this.state.size
             let positionY = columns[whichRow] * this.state.size
-
+            // draw the new character
             context.fillText(character, positionX, positionY)
-            if (positionY >= this.state.canvas.height && Math.random() > 1 - this.props.frequency) {
+            // erase the old charcter
+            context.globalCompositeOperation = 'destination-out'
+            context.fillStyle = `rgba(255, 255, 255, 1)`
+            context.fillText('0', positionX, positionY - this.props.maxLag * this.state.size)
+            context.fillText('1', positionX, positionY - this.props.maxLag * this.state.size)
+            context.fillStyle = this.props.color
+            context.globalCompositeOperation = 'source-over'
+            
+            if (positionY >= this.refs.canvas.height && Math.random() > 1 - this.props.frequency) {
                 columns[whichRow] = 0
             }
             columns[whichRow]++
@@ -74,13 +81,13 @@ class Matrix extends React.Component {
     };
 
     updateDimensions() {
-        let canvas = this.state.canvas
+        let canvas = this.refs.canvas
         canvas.width = window.innerWidth
         canvas.height = window.innerHeight
     }
 
     render() {
-        let style = this.props.style || {}
+        let style = this.props.style ? this.props.style : {}
         return React.createElement('div', {
             style: {
                 ...style,
@@ -120,6 +127,7 @@ Matrix.defaultProps = {
     fontSize: 13.5,
     interval: 30,
     color: '#00cc33',
+    maxLag: 100, // the max length of any code-trail 
     frequency: 0.005,
     speed: 1.6,
     fadeRate: 0.05,
