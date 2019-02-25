@@ -1,0 +1,33 @@
+{
+  "name": "react-matrix-parallax",
+  "version": "1.0.0",
+  "description": "A full screen react component that creates a visually pleasing code-rain parallax effect",
+  "main": "dist/matrix-parallax.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build matrix-parallax.jsx"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeff-hykin/react-matrix-parallax.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeff-hykin/react-matrix-parallax/issues"
+  },
+  "homepage": "https://github.com/jeff-hykin/react-matrix-parallax#readme",
+  "devDependencies": {
+    "@babel/core": "^7.3.3",
+    "@babel/plugin-proposal-class-properties": "^7.3.3",
+    "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0"
+  },
+  "dependencies": {
+    "@material-ui/styles": "^3.0.0-alpha.10",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3"
+  }
+}
