@@ -1,6 +1,6 @@
 {
     "name": "react-matrix-parallax",
-    "version": "1.0.5",
+    "version": "1.1.0",
     "description": "A full screen react component that creates a visually pleasing code-rain parallax effect",
     "main": "src/matrix-parallax.js",
     "scripts": {
