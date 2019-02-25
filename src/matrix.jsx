@@ -1,37 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export default class Matrix extends React.Component {
-    static propTypes = {
-        width: PropTypes.number,
-        height: PropTypes.number,
-        fullscreen: PropTypes.bool,
-        colSize: PropTypes.number,
-        fontSize: PropTypes.number,
-        interval: PropTypes.number,
-        color: PropTypes.string,
-        frequency: PropTypes.number,
-        speed: PropTypes.number,
-        style: PropTypes.object,
-        zIndex: PropTypes.number,
-        fadeRate: PropTypes.number,
-        backgroundColor: PropTypes.string
-    };
-
-    static defaultProps = {
-        width: 640,
-        height: 480,
-        fullscreen: false,
-        colSize: 11,
-        fontSize: 13.5,
-        interval: 30,
-        color: '#00cc33',
-        frequency: 0.005,
-        speed: 1.6,
-        fadeRate: 0.05,
-        backgroundColor: 'black'
-    };
-
+class Matrix extends React.Component {
     constructor(props) {
         super(props)
 
@@ -126,3 +96,35 @@ export default class Matrix extends React.Component {
         )
     }
 }
+
+Matrix.propTypes = {
+    width: PropTypes.number,
+    height: PropTypes.number,
+    fullscreen: PropTypes.bool,
+    colSize: PropTypes.number,
+    fontSize: PropTypes.number,
+    interval: PropTypes.number,
+    color: PropTypes.string,
+    frequency: PropTypes.number,
+    speed: PropTypes.number,
+    style: PropTypes.object,
+    zIndex: PropTypes.number,
+    fadeRate: PropTypes.number,
+    backgroundColor: PropTypes.string
+};
+
+Matrix.defaultProps = {
+    width: 640,
+    height: 480,
+    fullscreen: false,
+    colSize: 11,
+    fontSize: 13.5,
+    interval: 30,
+    color: '#00cc33',
+    frequency: 0.005,
+    speed: 1.6,
+    fadeRate: 0.05,
+    backgroundColor: 'black'
+};
+
+export default Matrix

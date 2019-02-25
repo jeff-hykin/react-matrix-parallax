@@ -1,32 +1,48 @@
 {
-  "name": "test-folder",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.3.3",
-    "@babel/preset-react": "^7.0.0",
-    "@material-ui/styles": "^3.0.0-alpha.10",
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3",
-    "react-scripts": "2.1.5"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "devDependencies": {
-    "@babel/core": "^7.0.0-0",
-    "@babel/plugin-proposal-optional-chaining": "^7.2.0"
-  }
+    "name": "react-matrix-parallax",
+    "version": "1.0.1",
+    "description": "A full screen react component that creates a visually pleasing code-rain parallax effect",
+    "main": "dist/matrix-parallax.js",
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jeff-hykin/react-matrix-parallax.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/jeff-hykin/react-matrix-parallax/issues"
+    },
+    "homepage": "https://github.com/jeff-hykin/react-matrix-parallax#readme",
+    "devDependencies": {
+        "@babel/core": "^7.3.3",
+        "@babel/plugin-proposal-class-properties": "^7.3.3",
+        "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+        "@babel/preset-env": "^7.3.1",
+        "@babel/preset-react": "^7.0.0"
+    },
+    "dependencies": {
+        "@material-ui/styles": "^3.0.0-alpha.10",
+        "react": "^16.8.3",
+        "react-dom": "^16.8.3",
+        "@babel/plugin-proposal-class-properties": "^7.3.3",
+        "@babel/preset-react": "^7.0.0",
+        "react-scripts": "2.1.5"
+    },
+    "private": true,
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": [
+        ">0.2%",
+        "not dead",
+        "not ie <= 11",
+        "not op_mini all"
+    ]
 }
