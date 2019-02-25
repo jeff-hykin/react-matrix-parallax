@@ -4,6 +4,9 @@ let Matrix = require('./matrix')
 
 const classes = {
     fullWindow: {
+        position: 'fixed',
+        top: 0,
+        left: 0,
         width: '100vw',
         height: '100vh',
         justifyContent: 'center',
@@ -13,13 +16,13 @@ const classes = {
         position: 'fixed',
         zIndex: '-1',
         transform: 'scale(1.2)',
-        transition: 'margin 500ms cubic-bezier(.19,1,.06,.99) 0s'
+        transition: 'margin scale 500ms cubic-bezier(.19,1,.06,.99) 0s'
     },
     moveableChildren: {
         flexDirection: 'column',
         backgroundColor: 'transparent',
         zIndex: '2',
-        transition: 'margin 500ms cubic-bezier(.19,1,.06,.99) 0s',
+        transition: 'margin scale 500ms cubic-bezier(.19,1,.06,.99) 0s',
         fontFamily: 'monospace'
     }
 }
@@ -59,8 +62,8 @@ class MatrixParallax extends React.Component {
                 style: {
                     ...classes.matrix,
                     color: this.props.color,
+                    left: -this.state.boxMarginLeft / this.backgroundParallaxRate,
                     top: -this.state.boxMarginTop / this.backgroundParallaxRate,
-                    left: -this.state.boxMarginLeft / this.backgroundParallaxRate
                 },
                 backgroundColor: this.props.backgroundColor,
                 fontSize: 11,
@@ -72,24 +75,32 @@ class MatrixParallax extends React.Component {
                 className: this.props.classes.moveableChildren,
                 style: {
                     color: this.props.color,
+                    transform: this.props.zoomEffect ? `scale(${0.8 + ((window.innerHeight / (window.innerHeight - this.state.boxMarginTop))/8)})` : "",
                     marginLeft: this.state.boxMarginLeft / this.boxChildrenParallaxRate,
                     marginTop: this.state.boxMarginTop / this.boxChildrenParallaxRate,
                 },
             },
                 this.props.children
             ),
+            React.createElement('div',{
+                style: {
+                    ...classes.fullWindow,
+                    backgroundColor: this.props.overlay,
+                    zIndex: 9,
+                }
+            }),
             React.createElement(Matrix, {
                 style: {
                     ...classes.matrix,
                     color: this.props.color,
+                    left: -this.state.boxMarginLeft / this.forgroundMatrixParalaxFactor,
                     top: -this.state.boxMarginTop / this.forgroundMatrixParalaxFactor,
-                    left: -this.state.boxMarginLeft / this.forgroundMatrixParalaxFactor
                 },
                 backgroundColor: 'rgba(0,0,0,0)',
                 fontSize: 11,
                 frequency: 0.001,
                 fullscreen: true,
-                zIndex: 3,
+                zIndex: 10,
                 ...this.props.frontMatrixProps
             })
         )
@@ -99,7 +110,9 @@ class MatrixParallax extends React.Component {
 MatrixParallax.defaultProps = {
     parallaxRate: 2,
     color: 'rgba(122, 229, 114, 0.87)',
+    overlay: 'rgba(0,0,0,0.3)',
     backgroundColor: 'rgba(0 ,0 ,0 , 1)',
+    zoomEffect: false,
     frontMatrixProps: {},
     backMatrixProps: {}
 }
