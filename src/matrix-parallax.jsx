@@ -25,14 +25,7 @@ export const classes = {
     }
 }
 
-export default withStyles(classes)(class extends React.Component {
-    static defaultProps = {
-        parallaxRate: 2,
-        backgroundColor: 'rgba(0 ,0 ,0 , 1)',
-        frontMatrixProps: {},
-        backMatrixProps: {}
-    };
-
+class MatrixParallax extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -97,4 +90,11 @@ export default withStyles(classes)(class extends React.Component {
             />
         </div>
     }
-})
+}
+MatrixParallax.defaultProps = {
+    parallaxRate: 2,
+    backgroundColor: 'rgba(0 ,0 ,0 , 1)',
+    frontMatrixProps: {},
+    backMatrixProps: {}
+}
+export default withStyles(classes)(MatrixParallax)
