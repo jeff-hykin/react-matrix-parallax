@@ -2,6 +2,7 @@ let React = require('react')
 let PropTypes = require('prop-types')
 
 let largerThanAnyPageSize = 9999999
+let largerThanWindow = 2
 
 class Matrix extends React.Component {
     constructor(props) {
@@ -18,8 +19,8 @@ class Matrix extends React.Component {
             let context = this.refs.canvas.getContext('2d')
             let size = this.props.colSize
             let source = '0 0 1 1'
-            let width = this.props.fullscreen ? window.innerWidth : this.props.width
-            let height = this.props.fullscreen ? window.innerHeight : this.props.height
+            let width = this.props.fullscreen ? window.innerWidth   * largerThanWindow : this.props.width
+            let height = this.props.fullscreen ? window.innerHeight * largerThanWindow : this.props.height
             let canvas = this.refs.canvas
             canvas.width = width
             canvas.height = height
@@ -82,8 +83,8 @@ class Matrix extends React.Component {
 
     updateDimensions() {
         let canvas = this.refs.canvas
-        canvas.width = window.innerWidth
-        canvas.height = window.innerHeight
+        canvas.width = window.innerWidth * largerThanWindow
+        canvas.height = window.innerHeight * largerThanWindow
     }
 
     render() {
@@ -91,8 +92,8 @@ class Matrix extends React.Component {
         return React.createElement('div', {
             style: {
                 ...style,
-                width: this.props.fullscreen ? '100vw' : this.props.width + 'px',
-                height: this.props.fullscreen ? '100vh' : this.props.height + 'px',
+                width: this.props.fullscreen ? '200vw' : this.props.width + 'px',
+                height: this.props.fullscreen ? '200vh' : this.props.height + 'px',
                 overflow: 'hidden',
                 zIndex: this.props.zIndex,
                 backgroundColor: this.props.backgroundColor
