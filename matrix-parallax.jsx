@@ -40,18 +40,28 @@ class MatrixParallax extends React.Component {
         this.boxChildrenParallaxRate = this.props.parallaxRate * 2
         this.backgroundParallaxRate = this.props.parallaxRate * 4
 
-        this.bodyListener = document.body.addEventListener('mousemove', (e) => {
+        this.bodyMouseListener = document.body.addEventListener('mousemove', (e) => {
             let centerX = window.innerWidth / 2
             let centerY = window.innerHeight / 2
             let distanceFromCenterY = e.pageY - centerY
             let distanceFromCenterX = e.pageX - centerX
             this.setState({ boxMarginTop: distanceFromCenterY, boxMarginLeft: distanceFromCenterX })
         })
+        this.bodyTouchListener = document.body.addEventListener('touchmove', (e) => {
+            e.preventDefault()
+            let touch = e.changedTouches[0]
+            let centerX = window.innerWidth / 2
+            let centerY = window.innerHeight / 2
+            let distanceFromCenterY = touch.pageY - centerY
+            let distanceFromCenterX = touch.pageX - centerX
+            this.setState({ boxMarginTop: distanceFromCenterY, boxMarginLeft: distanceFromCenterX })
+        })
     }
 
     componentWillUnmount() {
         // clean up by removing the listener
-        document.body.removeEventListener('mousemove', this.bodyListener)
+        document.body.removeEventListener('mousemove', this.bodyMouseListener)
+        document.body.removeEventListener('touchmove', this.bodyTouchListener)
     }
 
     render() {
