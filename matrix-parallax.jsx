@@ -9,8 +9,12 @@ const classes = {
         left: 0,
         width: '100vw',
         height: '100vh',
+        display: 'flex',
         justifyContent: 'center',
-        justifyItems: 'center'
+        justifyItems: 'center',
+        alignItems: 'center',
+        alignContent: 'center',
+        flexDirection: 'column'
     },
     matrix: {
         position: 'fixed',
@@ -19,6 +23,10 @@ const classes = {
         transition: 'margin scale 500ms cubic-bezier(.19,1,.06,.99) 0s'
     },
     moveableChildren: {
+        justifyContent: 'center',
+        justifyItems: 'center',
+        alignItems: 'center',
+        alignContent: 'center',
         flexDirection: 'column',
         backgroundColor: 'transparent',
         zIndex: '2',

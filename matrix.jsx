@@ -46,39 +46,43 @@ class Matrix extends React.Component {
         let context = this.state.context
         let columns = this.state.columns
         let numberOfColumns = this.state.numberOfColumns
-
-        // switch to only affect the intersection of the existing canvas, and fade everything
-        context.globalCompositeOperation = 'destination-out'
-        context.fillStyle = `rgba(255, 255, 255, ${this.props.fadeRate})`
-        context.fillRect(0, 0, this.refs.canvas.width, this.refs.canvas.width)
-        // switch back to the normal mode of writing on top of the canvas
-        context.globalCompositeOperation = 'source-over'
-
-        context.fillStyle = this.props.color
-        context.font = '700 ' + this.props.fontSize + 'px Consolas,monaco,monospace'
-
-        for (let whichRow = 0; whichRow < numberOfColumns; whichRow++) {
-            let index = Math.floor(Math.random() * this.state.source.length)
-            let character = this.state.source[index]
-            let positionX = whichRow * this.state.size
-            let positionY = columns[whichRow] * this.state.size
-            // draw the new character
-            context.fillText(character, positionX, positionY)
-            // erase the old charcter
+        
+        // if the canvas is setup
+        if (this.refs.canvas) {
+            // switch to only affect the intersection of the existing canvas, and fade everything
             context.globalCompositeOperation = 'destination-out'
-            context.fillStyle = `rgba(255, 255, 255, 1)`
-            context.fillText('0', positionX, positionY - this.props.maxLag * this.state.size)
-            context.fillText('1', positionX, positionY - this.props.maxLag * this.state.size)
-            context.fillStyle = this.props.color
+            context.fillStyle = `rgba(255, 255, 255, ${this.props.fadeRate})`
+            context.fillRect(0, 0, this.refs.canvas.width, this.refs.canvas.width)
+            // switch back to the normal mode of writing on top of the canvas
             context.globalCompositeOperation = 'source-over'
-            
-            if (positionY >= this.refs.canvas.height && Math.random() > 1 - this.props.frequency) {
-                columns[whichRow] = 0
+
+            context.fillStyle = this.props.color
+            context.font = '700 ' + this.props.fontSize + 'px Consolas,monaco,monospace'
+
+            for (let whichRow = 0; whichRow < numberOfColumns; whichRow++) {
+                let index = Math.floor(Math.random() * this.state.source.length)
+                let character = this.state.source[index]
+                let positionX = whichRow * this.state.size
+                let positionY = columns[whichRow] * this.state.size
+                // draw the new character
+                context.fillText(character, positionX, positionY)
+                // erase the old charcter
+                context.globalCompositeOperation = 'destination-out'
+                context.fillStyle = `rgba(255, 255, 255, 1)`
+                context.fillText('0', positionX, positionY - this.props.maxLag * this.state.size)
+                context.fillText('1', positionX, positionY - this.props.maxLag * this.state.size)
+                context.fillStyle = this.props.color
+                context.globalCompositeOperation = 'source-over'
+                
+                if (positionY >= this.refs.canvas.height && Math.random() > 1 - this.props.frequency) {
+                    columns[whichRow] = 0
+                }
+                columns[whichRow]++
             }
-            columns[whichRow]++
+
+            this.setState({ context, columns })
         }
 
-        this.setState({ context, columns })
     };
 
     updateDimensions() {
