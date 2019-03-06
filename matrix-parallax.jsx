@@ -23,6 +23,7 @@ const classes = {
         transition: 'margin scale 500ms cubic-bezier(.19,1,.06,.99) 0s'
     },
     moveableChildren: {
+        display: 'flex',
         justifyContent: 'center',
         justifyItems: 'center',
         alignItems: 'center',
