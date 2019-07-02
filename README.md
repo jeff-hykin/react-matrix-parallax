@@ -14,3 +14,7 @@ export default () =>
     </MatrixParallax>
   </React.Fragment>
 ```
+
+## What it can look like
+The GIF framerate makes the it look choppy but the Animation is smooth on a MacBook Air.
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/17692058/60544032-7bc93480-9cdd-11e9-9fd8-c88086218402.gif)
